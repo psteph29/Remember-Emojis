@@ -8,16 +8,25 @@
 import UIKit
 
 class EmojiTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var symbolLabel: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    private func updateView() {
+        guard let emoji else { return }
+        
+        symbolLabel.text = emoji.symbol
+        nameLabel.text = emoji.name
+        descriptionLabel.text = emoji.description
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    var emoji: Emoji? {
+        
+        didSet {
+            updateView()
+        }
+        
     }
-
 }
